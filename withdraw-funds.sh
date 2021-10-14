@@ -12,7 +12,7 @@ confirm (){
 }
 
 ## Guides through parts of this https://hackmd.io/FxCiD20ETZeMbfA8on9WMg?view#Fair-Launch-Protocol
-## Run with: bash ./end-launch.sh
+## Run with: bash ./withdraw-funds.sh
 
 ## Sets variables from .env
 export $(grep -v '^#' .env | xargs -d '\n')
