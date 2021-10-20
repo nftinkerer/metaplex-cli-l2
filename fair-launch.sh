@@ -26,21 +26,27 @@ ASSETS="$(pwd)/${ASSETS}"
 FL_CLI="$CLI_PATH/src/fair-launch-cli.ts"
 CM_CLI="$CLI_PATH/src/candy-machine-cli.ts"
 
+echo ""
+echo "Make sure to wait between some of these commands!"
+echo "  (If they fail, it's fine, just restart cli and skip commands before the fail)"
+echo "Gl ser :D"
+echo ""
+
 if confirm "new_fair_launch"; then
   ## Will show a <fair-launch-id>
   ts-node $FL_CLI new_fair_launch \
-    --uuid test03 \
-    --fee 0.1 \
-    --price-range-start 0.1 \
-    --price-range-end 2 \
-    --anti-rug-reserve-bp 5000 \
-    --anti-rug-token-requirement 1 \
-    --self-destruct-date "11 Oct 2021 09:00:00 GMT" \
-    -pos "2021 Oct 10 17:10:00 CDT" \
-    -poe "2021 Oct 10 17:25:00 CDT" \
-    -pte "2021 Oct 10 17:40:00 CDT" \
-    --tick-size 0.1 \
-    --number-of-tokens 2 \
+    --uuid $LAUNCH_UUID \
+    --fee $BIDFEE \
+    --price-range-start $PRICE_RANGE_START \
+    --price-range-end $PRICE_RANGE_END \
+    --anti-rug-reserve-bp $ANTI_RUG_RESERVE_BP \
+    --anti-rug-token-requirement $ANTI_RUG_TOKEN_REQUIREMENT \
+    --self-destruct-date $DATE_SELFDESTRUCT \
+    -pos $DATE_PHASEONE_START \
+    -poe $DATE_PHASEONE_END \
+    -pte $DATE_PHASETWO_END \
+    --tick-size $PRICE_RANGE_TICK_SIZE \
+    --number-of-tokens $NUM_TOKENS \
     --env $ENV \
     --keypair $KEYPAIR
 fi
@@ -89,7 +95,7 @@ fi
 
 if confirm "update_candy_machine"; then
   ts-node $CM_CLI update_candy_machine \
-    --date "9 Oct 2021 00:45:00 CDT" \
+    --date $DATE_CANDYMACHINE_START \
     --env $ENV \
     --keypair $KEYPAIR
 fi
