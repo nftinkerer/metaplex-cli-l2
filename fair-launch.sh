@@ -15,7 +15,9 @@ confirm (){
 ## Run with: bash ./fair-launch.sh
 
 ## Sets variables from .env
-export $(grep -v '^#' .env | xargs -d '\n')
+set -a
+source <(cat .env | sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
+set +a
 
 ## Makes ASSETS non relatative
 ASSETS="$(pwd)/${ASSETS}"
@@ -30,7 +32,6 @@ echo ""
 echo "Make sure to wait between some of these commands!"
 echo "  (If they fail, it's fine, just restart cli and skip commands before the fail)"
 echo "Gl ser :D"
-echo ""
 
 if confirm "new_fair_launch"; then
   ## Will show a <fair-launch-id>
@@ -42,9 +43,9 @@ if confirm "new_fair_launch"; then
     --anti-rug-reserve-bp $ANTI_RUG_RESERVE_BP \
     --anti-rug-token-requirement $ANTI_RUG_TOKEN_REQUIREMENT \
     --self-destruct-date $DATE_SELFDESTRUCT \
-    -pos $DATE_PHASEONE_START \
-    -poe $DATE_PHASEONE_END \
-    -pte $DATE_PHASETWO_END \
+    -pos "$DATE_PHASEONE_START" \
+    -poe "$DATE_PHASEONE_END" \
+    -pte "$DATE_PHASETWO_END" \
     --tick-size $PRICE_RANGE_TICK_SIZE \
     --number-of-tokens $NUM_TOKENS \
     --env $ENV \
