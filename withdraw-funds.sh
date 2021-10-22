@@ -46,7 +46,7 @@ if confirm "withdraw_funds"; then
 
   echo ""
   echo "Your new balance:"
-  solana balance
+  solana balance --keypair $KEYPAIR --url $ENV
 fi
 
 ## Unsets variables from .env

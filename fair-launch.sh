@@ -111,9 +111,9 @@ if confirm "premint_flp_tokens"; then
     --amount $PREMINT_FLP_TOKENS_NUM \
     --env $ENV \
     --keypair $KEYPAIR 
-  spl-token transfer --fund-recipient $TOKEN_MINT_ADDRESS $PREMINT_FLP_TOKENS_NUM $PREMINT_FLP_TOKENS_RCPT_ADDR
+  spl-token transfer --fee-payer $KEYPAIR --url $ENV --fund-recipient $TOKEN_MINT_ADDRESS $PREMINT_FLP_TOKENS_NUM $PREMINT_FLP_TOKENS_RCPT_ADDR
 elif confirm "create_token_account"; then
-  spl-token create-account $TOKEN_MINT_ADDRESS
+  spl-token create-account --fee-payer $KEYPAIR --url $ENV $TOKEN_MINT_ADDRESS
 fi
 
 echo ""
