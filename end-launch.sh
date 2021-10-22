@@ -15,7 +15,9 @@ confirm (){
 ## Run with: bash ./end-launch.sh
 
 ## Sets variables from .env
-export $(grep -v '^#' .env | xargs -d '\n')
+set -a
+source <(cat .env | sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
+set +a
 
 ## Makes ASSETS non relatative
 ASSETS="$(pwd)/${ASSETS}"
