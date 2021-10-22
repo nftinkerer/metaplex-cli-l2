@@ -66,6 +66,19 @@ fi
 echo ""
 read -r -p "<token-mint-address>: " TOKEN_MINT_ADDRESS
 
+if confirm "set_participation_nft"; then
+  ts-node $FL_CLI set_participation_nft \
+    -n "$PARTICIPATION_NFT_NAME" \
+    -s $PARTICIPATION_NFT_SYMBOL \
+    -u "$PARTICIPATION_NFT_URL" \
+    -sfbp $PARTICIPATION_NFT_SFBP \
+    -m $PARTICIPATION_NFT_MODULO \
+    -c $PARTICIPATION_NFT_CREATORS \
+    -f $FAIR_LAUNCH_ID \
+    --env $ENV \
+    --keypair $KEYPAIR
+fi
+
 if confirm "upload"; then
   ts-node $CM_CLI upload $ASSETS \
     --env $ENV \
@@ -78,7 +91,14 @@ if confirm "verify"; then
     --keypair $KEYPAIR
 fi
 
-if confirm "create_token_account"; then
+if confirm "premint_flp_tokens"; then
+  ts-node $FL_CLI mint_flp_tokens \
+    -f $FAIR_LAUNCH_ID \
+    --amount $PREMINT_FLP_TOKENS_NUM \
+    --env $ENV \
+    --keypair $KEYPAIR 
+  spl-token transfer --fund-recipient $TOKEN_MINT_ADDRESS $PREMINT_FLP_TOKENS_NUM $PREMINT_FLP_TOKENS_RCPT_ADDR
+elif confirm "create_token_account"; then
   spl-token create-account $TOKEN_MINT_ADDRESS
 fi
 
