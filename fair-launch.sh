@@ -19,8 +19,9 @@ set -a
 source <(cat .env | sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
 set +a
 
-## Makes ASSETS non relatative
+## Makes ASSETS and WHITELIST_JSON non relatative
 ASSETS="$(pwd)/${ASSETS}"
+WHITELIST_JSON="$(pwd)/${WHITELIST_JSON}"
 
 ## Makes sure dependencies are installed for cli
 ## npm install --loglevel=error
@@ -70,11 +71,11 @@ read -r -p "<token-mint-address>: " TOKEN_MINT_ADDRESS
 if confirm "set_participation_nft"; then
   ts-node $FL_CLI set_participation_nft \
     -n "$PARTICIPATION_NFT_NAME" \
-    -s $PARTICIPATION_NFT_SYMBOL \
+    -s "$PARTICIPATION_NFT_SYMBOL" \
     -u "$PARTICIPATION_NFT_URL" \
     -sfbp $PARTICIPATION_NFT_SFBP \
     -m $PARTICIPATION_NFT_MODULO \
-    -c $PARTICIPATION_NFT_CREATORS \
+    -c "$PARTICIPATION_NFT_CREATORS" \
     -f $FAIR_LAUNCH_ID \
     --env $ENV \
     --keypair $KEYPAIR

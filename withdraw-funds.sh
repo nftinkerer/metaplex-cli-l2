@@ -19,8 +19,9 @@ set -a
 source <(cat .env | sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
 set +a
 
-## Makes ASSETS non relatative
+## Makes ASSETS and WHITELIST_JSON non relatative
 ASSETS="$(pwd)/${ASSETS}"
+WHITELIST_JSON="$(pwd)/${WHITELIST_JSON}"
 
 FL_CLI="$CLI_PATH/src/fair-launch-cli.ts"
 

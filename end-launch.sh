@@ -19,8 +19,9 @@ set -a
 source <(cat .env | sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
 set +a
 
-## Makes ASSETS non relatative
+## Makes ASSETS and WHITELIST_JSON non relatative
 ASSETS="$(pwd)/${ASSETS}"
+WHITELIST_JSON="$(pwd)/${WHITELIST_JSON}"
 
 FL_CLI="$CLI_PATH/src/fair-launch-cli.ts"
 
@@ -40,6 +41,7 @@ if confirm "create_fair_launch_lottery"; then
   ## Will show a <token-mint-address>
   ts-node $FL_CLI create_fair_launch_lottery \
     -f $FAIR_LAUNCH_ID \
+    --whitelist-json $WHITELIST_JSON \
     --rpc-url "$RPC_URL" \
     --env $ENV \
     --keypair $KEYPAIR
