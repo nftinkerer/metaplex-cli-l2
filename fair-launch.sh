@@ -68,6 +68,18 @@ fi
 echo ""
 read -r -p "<token-mint-address>: " TOKEN_MINT_ADDRESS
 
+if confirm "set_token_metadata"; then
+  ts-node $FL_CLI set_token_metadata \
+    -n "$FLP_TICKET_NAME" \
+    -s "$FLP_TICKET_SYMBOL" \
+    -u "$FLP_TICKET_URL" \
+    -sfbp $FLP_TICKET_SFBP \
+    -c "$FLP_TICKET_CREATORS" \
+    -f $FAIR_LAUNCH_ID \
+    --env $ENV \
+    --keypair $KEYPAIR
+fi
+
 if confirm "set_participation_nft"; then
   ts-node $FL_CLI set_participation_nft \
     -n "$PARTICIPATION_NFT_NAME" \

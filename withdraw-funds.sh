@@ -43,6 +43,10 @@ if confirm "withdraw_funds"; then
     -f $FAIR_LAUNCH_ID \
     --env $ENV \
     --keypair $KEYPAIR
+
+  echo ""
+  echo "Your new balance:"
+  solana balance
 fi
 
 ## Unsets variables from .env
