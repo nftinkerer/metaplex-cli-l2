@@ -31,7 +31,7 @@ if confirm "punch_and_refund_all_outstanding"; then
   ## Will show a <token-mint-address>
   ts-node $FL_CLI punch_and_refund_all_outstanding \
     -f $FAIR_LAUNCH_ID \
-    --rpc-url "$RPC_URL"
+    --rpc-url "$RPC_URL" \
     --env $ENV \
     --keypair $KEYPAIR
 fi

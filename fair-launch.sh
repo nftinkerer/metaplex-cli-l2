@@ -59,6 +59,7 @@ if confirm "show"; then
   ## Will show a <token-mint-address>
   ts-node $FL_CLI show \
     -f $FAIR_LAUNCH_ID \
+    --rpc-url "$RPC_URL" \
     --env $ENV \
     --keypair $KEYPAIR
 fi

@@ -31,6 +31,7 @@ if confirm "create_missing_sequences"; then
   ## Will show a <token-mint-address>
   ts-node $FL_CLI create_missing_sequences \
     -f $FAIR_LAUNCH_ID \
+    --rpc-url "$RPC_URL" \
     --env $ENV \
     --keypair $KEYPAIR
 fi
@@ -39,6 +40,7 @@ if confirm "create_fair_launch_lottery"; then
   ## Will show a <token-mint-address>
   ts-node $FL_CLI create_fair_launch_lottery \
     -f $FAIR_LAUNCH_ID \
+    --rpc-url "$RPC_URL" \
     --env $ENV \
     --keypair $KEYPAIR
 fi
@@ -47,6 +49,7 @@ if confirm "show_lottery"; then
   ## Will show a <token-mint-address>
   ts-node $FL_CLI show_lottery \
     -f $FAIR_LAUNCH_ID \
+    --rpc-url "$RPC_URL" \
     --env $ENV \
     --keypair $KEYPAIR
 fi
