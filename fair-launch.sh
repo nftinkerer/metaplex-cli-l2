@@ -22,6 +22,8 @@ set +a
 ## Makes ASSETS and WHITELIST_JSON non relatative
 ASSETS="$(pwd)/${ASSETS}"
 WHITELIST_JSON="$(pwd)/${WHITELIST_JSON}"
+PARTICIPATION_NFT_JSON="$(pwd)/${PARTICIPATION_NFT_JSON}"
+PARTICIPATION_NFT_IMAGE="$(pwd)/${PARTICIPATION_NFT_IMAGE}"
 
 ## Makes sure dependencies are installed for cli
 ## npm install --loglevel=error
@@ -79,6 +81,14 @@ if confirm "set_token_metadata"; then
     --env $ENV \
     --keypair $KEYPAIR
 fi
+
+if confirm "upload_participation_nft"; then
+  ts-node $FL_CLI upload_participation_nft \
+    -m $PARTICIPATION_NFT_JSON \
+    -i $PARTICIPATION_NFT_IMAGE \
+    --env $ENV \
+    --keypair $KEYPAIR
+fi 
 
 if confirm "set_participation_nft"; then
   ts-node $FL_CLI set_participation_nft \
