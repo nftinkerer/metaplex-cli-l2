@@ -45,7 +45,7 @@ if confirm "new_fair_launch"; then
     --price-range-end $PRICE_RANGE_END \
     --anti-rug-reserve-bp $ANTI_RUG_RESERVE_BP \
     --anti-rug-token-requirement $ANTI_RUG_TOKEN_REQUIREMENT \
-    --self-destruct-date $DATE_SELFDESTRUCT \
+    --self-destruct-date "$DATE_SELFDESTRUCT" \
     -pos "$DATE_PHASEONE_START" \
     -poe "$DATE_PHASEONE_END" \
     -pte "$DATE_PHASETWO_END" \
