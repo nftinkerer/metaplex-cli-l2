@@ -36,6 +36,11 @@ echo "Make sure to wait between some of these commands!"
 echo "  (If they fail, it's fine, just restart cli and skip commands before the fail)"
 echo "Gl ser :D"
 
+if confirm "whoami"; then
+  solana address --keypair $KEYPAIR --url $ENV
+  solana balance --keypair $KEYPAIR --url $ENV
+fi
+
 if confirm "new_fair_launch"; then
   ## Will show a <fair-launch-id>
   ts-node $FL_CLI new_fair_launch \

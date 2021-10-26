@@ -30,6 +30,11 @@ FL_CLI="$CLI_PATH/src/fair-launch-cli.ts"
 echo ""
 read -r -p "<fair-launch-id>: " FAIR_LAUNCH_ID
 
+if confirm "whoami"; then
+  solana address --keypair $KEYPAIR --url $ENV
+  solana balance --keypair $KEYPAIR --url $ENV
+fi
+
 if confirm "create_missing_sequences"; then
   ## Will show a <token-mint-address>
   ts-node $FL_CLI create_missing_sequences \
